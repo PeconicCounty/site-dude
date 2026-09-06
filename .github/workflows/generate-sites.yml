@@ -3,7 +3,7 @@ name: Generate & deploy demo sites
 on:
   push:
     branches: [main]
-    paths: ['leads/leads.json']
+    paths: ['leads/leads.json', '.github/workflows/generate-sites.yml']
   workflow_dispatch:
 
 concurrency:
@@ -42,7 +42,7 @@ jobs:
 
       # ---- Deploy (skipped until CLOUDFLARE_API_TOKEN / CLOUDFLARE_ACCOUNT_ID
       # ---- secrets are added; token needs Cloudflare Pages:Edit).
-      # ---- Optional DEMO_DOMAIN secret (e.g. "sitedude.com"): when set, each
+      # ---- Optional DEMO_DOMAIN secret (e.g. "usawebsitedude.com"): when set, each
       # ---- site is also attached as <slug>.DEMO_DOMAIN and that becomes the
       # ---- demo URL; until then demo URLs are sd-<slug>.pages.dev.
       - name: Deploy to Cloudflare Pages

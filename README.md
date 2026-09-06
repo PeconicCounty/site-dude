@@ -36,4 +36,4 @@ Set in the repo under Settings → Secrets and variables → Actions:
 
 - `CLOUDFLARE_API_TOKEN` — API token with **Cloudflare Pages: Edit** (account-level). The workflow skips deployment entirely until this exists.
 - `CLOUDFLARE_ACCOUNT_ID` — from the Cloudflare dashboard sidebar.
-- `DEMO_DOMAIN` (optional) — e.g. `sitedude.com`, once the zone is in the same Cloudflare account. With it set, each site is served at `<slug>.DEMO_DOMAIN` (Pages manages the DNS records itself); without it, demo URLs are `sd-<slug>.pages.dev`. Sites deployed before the domain existed are upgraded to the custom domain on the next workflow run (trigger one manually from the Actions tab via *Run workflow*).
+- `DEMO_DOMAIN` (optional) — `usawebsitedude.com`, once the zone is in the same Cloudflare account. With it set, each site is served at `<slug>.DEMO_DOMAIN` (Pages manages the DNS records itself); without it, demo URLs are `sd-<slug>.pages.dev`. Sites deployed before the domain existed are upgraded to the custom domain on the next workflow run (trigger one manually from the Actions tab via *Run workflow*).
