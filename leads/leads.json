@@ -1,0 +1,383 @@
+[
+  {
+    "place_id": "ChIJPUXpOcVI6IkR98JLzY57TpA",
+    "slug": "above-all-electric",
+    "name": "Above All Electric",
+    "category": "Electrician",
+    "subtypes": "Electrician",
+    "phone": "+1 631-363-5997",
+    "email": null,
+    "fallback_channel": "booking",
+    "facebook": null,
+    "booking_link": "https://book.housecallpro.com/book/Above-All-Electric/cfdc4de778de4cc4ac38fc90c306a3a6?v2=true&lead_source=google&merchant_id=5ec60ffd-c729-4034-a88e-e44b26ba79b9&rwg_token=AE37R_hHrkPr_mAlkxz7AmkkI_RhcP-FyhZ6J9RfRigfZzcqYfZi8YOlX3noK4hwWmi-CrXH1OUb7Ju-fwHF6GtONMXVsbaCAw%3D%3D",
+    "street": "23 Sunrise Hwy North Service Rd",
+    "city": "Patchogue",
+    "county": null,
+    "state": "NY",
+    "zip": "11772",
+    "lat": 40.7797248,
+    "lng": -73.01392419999999,
+    "rating": 4.8,
+    "review_count": 60,
+    "five_star_count": 55,
+    "hours": {
+      "Monday": [
+        "9AM-5PM"
+      ],
+      "Tuesday": [
+        "9AM-5PM"
+      ],
+      "Wednesday": [
+        "9AM-5PM"
+      ],
+      "Thursday": [
+        "9AM-5PM"
+      ],
+      "Friday": [
+        "9AM-5PM"
+      ],
+      "Saturday": [
+        "Closed"
+      ],
+      "Sunday": [
+        "Closed"
+      ]
+    },
+    "photo": "https://lh3.googleusercontent.com/gps-cs-s/AHRPTWno6qC54Gh9Wa6waF8vdqyUovNTFUbLdT55r9zXFdqb3JOkVfbtpyRLZyKkgxpou0s3mNmAjzlzpTzr-LFrUP5rDdsaHmE4ypVvrrn1k6kGGSAHyOwViCmgTRhSrieWqOfXcvIN=w800-h500-k-no",
+    "photos_count": 8,
+    "google_url": "https://www.google.com/maps/place/Above+All+Electric/@40.7797248,-73.01392419999999,14z/data=!4m8!1m2!2m1!1sAbove+All+Electric!3m4!1s0x89e848c539e9453d:0x904e7b8ecd4bc2f7!8m2!3d40.7797248!4d-73.01392419999999",
+    "reviews_link": "https://search.google.com/local/reviews?placeid=ChIJPUXpOcVI6IkR98JLzY57TpA&q=*&authuser=0&hl=en&gl=US",
+    "website_field": null,
+    "grade": "A",
+    "demo_url": null,
+    "areas": [
+      "Patchogue",
+      "East Patchogue",
+      "Medford",
+      "Holbrook",
+      "Sayville",
+      "Bellport"
+    ],
+    "region": "central Suffolk County"
+  },
+  {
+    "place_id": "ChIJ5VDsoDdJ6IkRQurrXLH_HqQ",
+    "slug": "automated-electric-inc",
+    "name": "Automated Electric Inc",
+    "category": "Electrician",
+    "subtypes": "Electrician, Electrical engineer",
+    "phone": "+1 631-849-4256",
+    "email": null,
+    "fallback_channel": "phone",
+    "facebook": null,
+    "booking_link": null,
+    "street": "401 Bay Ave",
+    "city": "East Patchogue",
+    "county": null,
+    "state": "NY",
+    "zip": "11772",
+    "lat": 40.7520579,
+    "lng": -73.00347459999999,
+    "rating": null,
+    "review_count": null,
+    "five_star_count": null,
+    "hours": {
+      "Monday": [
+        "9AM-9PM"
+      ],
+      "Tuesday": [
+        "9AM-9PM"
+      ],
+      "Wednesday": [
+        "9AM-9PM"
+      ],
+      "Thursday": [
+        "9AM-9PM"
+      ],
+      "Friday": [
+        "9AM-9PM"
+      ],
+      "Saturday": [
+        "9AM-9PM"
+      ],
+      "Sunday": [
+        "9AM-9PM"
+      ]
+    },
+    "photo": "https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=KQHyQAr860BBj0DpKaGA9g&cb_client=search.gws-prod.gps&w=800&h=500&yaw=93.280464&pitch=0&thumbfov=100",
+    "photos_count": 1,
+    "google_url": "https://www.google.com/maps/place/Automated+Electric+Inc/@40.7520579,-73.00347459999999,14z/data=!4m8!1m2!2m1!1sAutomated+Electric+Inc!3m4!1s0x89e84937a0ec50e5:0xa41effb15cebea42!8m2!3d40.7520579!4d-73.00347459999999",
+    "reviews_link": null,
+    "website_field": null,
+    "grade": "B",
+    "demo_url": null
+  },
+  {
+    "place_id": "ChIJ71C3OLNJ6IkRmvPX2FWyxkQ",
+    "slug": "american-appliance-repair-company",
+    "name": "American Appliance Repair Company",
+    "category": "Appliance repair service",
+    "subtypes": "Appliance repair service",
+    "phone": "+1 631-407-2554",
+    "email": null,
+    "fallback_channel": "phone",
+    "facebook": null,
+    "booking_link": null,
+    "street": "466 E Main St",
+    "city": "Patchogue",
+    "county": null,
+    "state": "NY",
+    "zip": "11772",
+    "lat": 40.7666437,
+    "lng": -72.9973337,
+    "rating": 5.0,
+    "review_count": 1,
+    "five_star_count": 1,
+    "hours": null,
+    "photo": "https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=9GDo-DqaSxqG6vQJ3CW7FQ&cb_client=search.gws-prod.gps&w=800&h=500&yaw=168.31651&pitch=0&thumbfov=100",
+    "photos_count": 1,
+    "google_url": "https://www.google.com/maps/place/American+Appliance+Repair+Company/@40.766643699999996,-72.9973337,14z/data=!4m8!1m2!2m1!1sAmerican+Appliance+Repair+Company!3m4!1s0x89e849b338b750ef:0x44c6b255d8d7f39a!8m2!3d40.766643699999996!4d-72.9973337",
+    "reviews_link": "https://search.google.com/local/reviews?placeid=ChIJ71C3OLNJ6IkRmvPX2FWyxkQ&q=*&authuser=0&hl=en&gl=US",
+    "website_field": null,
+    "grade": "B",
+    "demo_url": null
+  },
+  {
+    "place_id": "ChIJA7lYJR1J6IkRYe0u7TXZLy4",
+    "slug": "riteway-automotive-center-inc",
+    "name": "Riteway Automotive Center Inc",
+    "category": "Auto repair shop",
+    "subtypes": "Auto repair shop",
+    "phone": "+1 631-207-2146",
+    "email": null,
+    "fallback_channel": "phone",
+    "facebook": null,
+    "booking_link": null,
+    "street": "192 Waverly Ave",
+    "city": "Patchogue",
+    "county": null,
+    "state": "NY",
+    "zip": "11772",
+    "lat": 40.7711547,
+    "lng": -73.02795449999999,
+    "rating": 5.0,
+    "review_count": 348,
+    "five_star_count": 341,
+    "hours": {
+      "Monday": [
+        "7AM-4PM"
+      ],
+      "Tuesday": [
+        "7AM-4PM"
+      ],
+      "Wednesday": [
+        "7AM-4PM"
+      ],
+      "Thursday": [
+        "7AM-4PM"
+      ],
+      "Friday": [
+        "7AM-4PM"
+      ],
+      "Saturday": [
+        "Closed"
+      ],
+      "Sunday": [
+        "Closed"
+      ]
+    },
+    "photo": "https://lh3.googleusercontent.com/gps-cs-s/AHRPTWmabaCInX_AHHv-j6b4jJCnQ0OJJpf37Y4ndxMWVlSJF7smVZyYf9EkC8Bpq76FQltM40_3Sr7ZIVV56pJ00I7aKjywZ8q4Zg390hcxLqyBQuCU8a5o_6OOga_Szk02uER73p4=w800-h500-k-no",
+    "photos_count": 26,
+    "google_url": "https://www.google.com/maps/place/Riteway+Automotive+Center+Inc/@40.7711547,-73.02795449999999,14z/data=!4m8!1m2!2m1!1sRiteway+Automotive+Center+Inc!3m4!1s0x89e8491d2558b903:0x2e2fd935ed2eed61!8m2!3d40.7711547!4d-73.02795449999999",
+    "reviews_link": "https://search.google.com/local/reviews?placeid=ChIJA7lYJR1J6IkRYe0u7TXZLy4&q=*&authuser=0&hl=en&gl=US",
+    "website_field": null,
+    "grade": "A",
+    "demo_url": null
+  },
+  {
+    "place_id": "ChIJ605wCM5I6IkRtDKiwtQuF4k",
+    "slug": "mark-speiss-plumbing-heating-airconditioning",
+    "name": "Mark Speiss Plumbing Heating Airconditioning",
+    "category": "Plumber",
+    "subtypes": "Plumber",
+    "phone": "+1 631-475-1707",
+    "email": null,
+    "fallback_channel": "phone",
+    "facebook": null,
+    "booking_link": null,
+    "street": "271 Washington Ave",
+    "city": "Patchogue",
+    "county": null,
+    "state": "NY",
+    "zip": "11772",
+    "lat": 40.7792238,
+    "lng": -72.9993302,
+    "rating": 3.7,
+    "review_count": 3,
+    "five_star_count": 2,
+    "hours": {
+      "Monday": [
+        "8AM-4PM"
+      ],
+      "Tuesday": [
+        "8AM-4PM"
+      ],
+      "Wednesday": [
+        "8AM-4PM"
+      ],
+      "Thursday": [
+        "8AM-4PM"
+      ],
+      "Friday": [
+        "8AM-4PM"
+      ],
+      "Saturday": [
+        "8AM-4PM"
+      ],
+      "Sunday": [
+        "Closed"
+      ]
+    },
+    "photo": "https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=3MB7ZaBffQ4kYeDwwTYVbg&cb_client=search.gws-prod.gps&w=800&h=500&yaw=88.020035&pitch=0&thumbfov=100",
+    "photos_count": 1,
+    "google_url": "https://www.google.com/maps/place/Mark+Speiss+Plumbing+Heating+Airconditioning/@40.7792238,-72.9993302,14z/data=!4m8!1m2!2m1!1sMark+Speiss+Plumbing+Heating+Airconditioning!3m4!1s0x89e848ce08704eeb:0x89172ed4c2a232b4!8m2!3d40.7792238!4d-72.9993302",
+    "reviews_link": "https://search.google.com/local/reviews?placeid=ChIJ605wCM5I6IkRtDKiwtQuF4k&q=*&authuser=0&hl=en&gl=US",
+    "website_field": null,
+    "grade": "B",
+    "demo_url": null
+  },
+  {
+    "place_id": "ChIJA0koCwFJ6IkR3N-5Sk4A200",
+    "slug": "assured-plumbing-heating",
+    "name": "Assured Plumbing & Heating",
+    "category": "Plumber",
+    "subtypes": "Plumber, HVAC contractor, Septic system service",
+    "phone": "+1 631-598-1234",
+    "email": null,
+    "fallback_channel": "phone",
+    "facebook": null,
+    "booking_link": null,
+    "street": "60 Oxbow Rd",
+    "city": "Patchogue",
+    "county": null,
+    "state": "NY",
+    "zip": "11772",
+    "lat": 40.7713363,
+    "lng": -73.03682959999999,
+    "rating": 3.4,
+    "review_count": 5,
+    "five_star_count": 3,
+    "hours": {
+      "Monday": [
+        "Open 24 hours"
+      ],
+      "Tuesday": [
+        "Open 24 hours"
+      ],
+      "Wednesday": [
+        "Open 24 hours"
+      ],
+      "Thursday": [
+        "Open 24 hours"
+      ],
+      "Friday": [
+        "Open 24 hours"
+      ],
+      "Saturday": [
+        "Open 24 hours"
+      ],
+      "Sunday": [
+        "Open 24 hours"
+      ]
+    },
+    "photo": "https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=1rNhBpK6D8jy4L6XUX8TrA&cb_client=search.gws-prod.gps&w=800&h=500&yaw=310.65686&pitch=0&thumbfov=100",
+    "photos_count": 1,
+    "google_url": "https://www.google.com/maps/place/Assured+Plumbing+%26+Heating/@40.7713363,-73.03682959999999,14z/data=!4m8!1m2!2m1!1sAssured+Plumbing+%26+Heating!3m4!1s0x89e849010b284903:0x4ddb004e4ab9dfdc!8m2!3d40.7713363!4d-73.03682959999999",
+    "reviews_link": "https://search.google.com/local/reviews?placeid=ChIJA0koCwFJ6IkR3N-5Sk4A200&q=*&authuser=0&hl=en&gl=US",
+    "website_field": null,
+    "grade": "B",
+    "demo_url": null
+  },
+  {
+    "place_id": "ChIJu0pSibhI6IkRmau6SJspY-k",
+    "slug": "two-brothers-auto-service",
+    "name": "Two Brothers Auto Service",
+    "category": "Auto repair shop",
+    "subtypes": "Auto repair shop",
+    "phone": "+1 631-758-2020",
+    "email": null,
+    "fallback_channel": "phone",
+    "facebook": null,
+    "booking_link": null,
+    "street": "609B NY-112",
+    "city": "Patchogue",
+    "county": null,
+    "state": "NY",
+    "zip": "11772",
+    "lat": 40.7907093,
+    "lng": -73.0086618,
+    "rating": 4.1,
+    "review_count": 73,
+    "five_star_count": 53,
+    "hours": {
+      "Monday": [
+        "9AM-5:30PM"
+      ],
+      "Tuesday": [
+        "9AM-5:30PM"
+      ],
+      "Wednesday": [
+        "9AM-5:30PM"
+      ],
+      "Thursday": [
+        "9AM-5:30PM"
+      ],
+      "Friday": [
+        "9AM-5:30PM"
+      ],
+      "Saturday": [
+        "9AM-2PM"
+      ],
+      "Sunday": [
+        "Closed"
+      ]
+    },
+    "photo": "https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=-a_vWQvX-AbiiU7vaT1PRQ&cb_client=search.gws-prod.gps&w=800&h=500&yaw=244.38742&pitch=0&thumbfov=100",
+    "photos_count": 1,
+    "google_url": "https://www.google.com/maps/place/Two+Brothers+Auto+Service/@40.790709299999996,-73.0086618,14z/data=!4m8!1m2!2m1!1sTwo+Brothers+Auto+Service!3m4!1s0x89e848b889524abb:0xe963299b48baab99!8m2!3d40.790709299999996!4d-73.0086618",
+    "reviews_link": "https://search.google.com/local/reviews?placeid=ChIJu0pSibhI6IkRmau6SJspY-k&q=*&authuser=0&hl=en&gl=US",
+    "website_field": null,
+    "grade": "B",
+    "demo_url": null
+  },
+  {
+    "place_id": "ChIJkUlmIyJJ6IkRBNsXsiBU6SM",
+    "slug": "mangano-sewer-drain",
+    "name": "Mangano Sewer & Drain",
+    "category": "Plumber",
+    "subtypes": "Plumber",
+    "phone": "+1 631-576-4932",
+    "email": null,
+    "fallback_channel": "phone",
+    "facebook": null,
+    "booking_link": null,
+    "street": null,
+    "city": "Patchogue",
+    "county": null,
+    "state": "NY",
+    "zip": "11772",
+    "lat": 40.7656538,
+    "lng": -73.0151084,
+    "rating": null,
+    "review_count": null,
+    "five_star_count": null,
+    "hours": null,
+    "photo": "https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=L9LkxCoR4mi0kWTymxVuzw&cb_client=search.gws-prod.gps&w=800&h=500&yaw=8.787858&pitch=0&thumbfov=100",
+    "photos_count": 1,
+    "google_url": "https://www.google.com/maps/place/Mangano+Sewer+%26+Drain/@40.765653799999995,-73.0151084,14z/data=!4m8!1m2!2m1!1sMangano+Sewer+%26+Drain!3m4!1s0x89e8492223664991:0x23e95420b217db04!8m2!3d40.765653799999995!4d-73.0151084",
+    "reviews_link": null,
+    "website_field": null,
+    "grade": "B",
+    "demo_url": null
+  }
+]

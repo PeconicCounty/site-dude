@@ -1,0 +1,90 @@
+name: Generate & deploy demo sites
+
+on:
+  push:
+    branches: [main]
+    paths: ['leads/leads.json']
+  workflow_dispatch:
+
+concurrency:
+  group: generate-sites
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: template/package-lock.json
+
+      - name: Install template deps
+        run: npm ci
+        working-directory: template
+
+      - name: Find pending leads
+        id: pending
+        run: |
+          COUNT=$(node -e "console.log(JSON.parse(require('fs').readFileSync('leads/leads.json','utf8')).filter(l=>!l.demo_url).length)")
+          echo "count=$COUNT" >> "$GITHUB_OUTPUT"
+          echo "$COUNT lead(s) pending"
+
+      - name: Build pending sites
+        if: steps.pending.outputs.count != '0'
+        run: node scripts/generate-site.mjs --all
+
+      # ---- Deploy (skipped until CLOUDFLARE_API_TOKEN / CLOUDFLARE_ACCOUNT_ID
+      # ---- secrets are added; token needs Pages:Edit + DNS:Edit on sitedude.com)
+      - name: Deploy to Cloudflare Pages
+        if: steps.pending.outputs.count != '0' && secrets.CLOUDFLARE_API_TOKEN != ''
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          node - <<'EOF'
+          const fs = require('fs');
+          const { execFileSync } = require('child_process');
+          const leads = JSON.parse(fs.readFileSync('leads/leads.json', 'utf8'));
+          for (const lead of leads) {
+            if (lead.demo_url) continue;
+            const project = `sd-${lead.slug}`.slice(0, 58);
+            const domain = `${lead.slug}.sitedude.com`;
+            try {
+              execFileSync('npx', ['wrangler', 'pages', 'project', 'create', project, '--production-branch', 'main'], { stdio: 'inherit' });
+            } catch { /* already exists */ }
+            execFileSync('npx', ['wrangler', 'pages', 'deploy', `sites/${lead.slug}/dist`, '--project-name', project, '--branch', 'main'], { stdio: 'inherit' });
+            // attach the custom domain to the Pages project (DNS CNAME must
+            // exist or be covered by a wildcard record on sitedude.com)
+            const res = execFileSync('curl', ['-s', '-X', 'POST',
+              `https://api.cloudflare.com/client/v4/accounts/${process.env.CLOUDFLARE_ACCOUNT_ID}/pages/projects/${project}/domains`,
+              '-H', `Authorization: Bearer ${process.env.CLOUDFLARE_API_TOKEN}`,
+              '-H', 'Content-Type: application/json',
+              '--data', JSON.stringify({ name: domain })]).toString();
+            const ok = JSON.parse(res);
+            if (!ok.success && !(ok.errors || []).some(e => /already/i.test(e.message))) {
+              console.error(`domain attach failed for ${domain}:`, res);
+            }
+            lead.demo_url = `https://${domain}`;
+            console.log(`deployed ${lead.name} -> ${lead.demo_url}`);
+          }
+          fs.writeFileSync('leads/leads.json', JSON.stringify(leads, null, 2) + '\n');
+          EOF
+
+      - name: Write demo URLs back to leads.json
+        if: steps.pending.outputs.count != '0' && secrets.CLOUDFLARE_API_TOKEN != ''
+        run: |
+          if git diff --quiet leads/leads.json; then
+            echo "no demo URLs to record"; exit 0
+          fi
+          git config user.name "site-dude-bot"
+          git config user.email "bot@sitedude.com"
+          git add leads/leads.json
+          git commit -m "record demo URLs [bot]"
+          git push

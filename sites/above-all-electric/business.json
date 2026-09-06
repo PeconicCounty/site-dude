@@ -1,0 +1,80 @@
+{
+  "name": "Above All Electric",
+  "logo_main": "ABOVE ALL",
+  "logo_accent": "ELECTRIC",
+  "phone_display": "(631) 363-5997",
+  "phone_e164": "+16313635997",
+  "street": "23 Sunrise Hwy North Service Rd",
+  "city": "Patchogue",
+  "state": "NY",
+  "zip": "11772",
+  "lat": 40.7797248,
+  "lng": -73.01392419999999,
+  "rating": 4.8,
+  "review_count": 60,
+  "five_star_count": 55,
+  "google_url": "https://www.google.com/maps/place/Above+All+Electric/@40.7797248,-73.01392419999999,14z/data=!4m8!1m2!2m1!1sAbove+All+Electric!3m4!1s0x89e848c539e9453d:0x904e7b8ecd4bc2f7!8m2!3d40.7797248!4d-73.01392419999999",
+  "trade_noun": "electrician",
+  "trade_work": "electrical work",
+  "schema_type": "Electrician",
+  "accent": "#f5c400",
+  "region": "central Suffolk County",
+  "hours": [
+    {
+      "days": "Monday – Friday",
+      "time": "9 AM – 5 PM"
+    },
+    {
+      "days": "Saturday – Sunday",
+      "time": "Closed"
+    }
+  ],
+  "hours_spec": [
+    {
+      "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday"
+      ],
+      "opens": "09:00",
+      "closes": "17:00"
+    }
+  ],
+  "areas": [
+    "Patchogue",
+    "East Patchogue",
+    "Medford",
+    "Holbrook",
+    "Sayville",
+    "Bellport"
+  ],
+  "services": [
+    {
+      "title": "Panel upgrades",
+      "blurb": "Replace outdated or overloaded panels so your home handles modern demand safely."
+    },
+    {
+      "title": "Wiring & repairs",
+      "blurb": "Troubleshooting, rewiring, outlets, and switches — old houses welcome."
+    },
+    {
+      "title": "Lighting",
+      "blurb": "Indoor, outdoor, and landscape lighting, installed and wired to code."
+    },
+    {
+      "title": "EV chargers",
+      "blurb": "Level 2 home charger installation, sized correctly for your panel."
+    },
+    {
+      "title": "Generators",
+      "blurb": "Standby generator hookups so the next outage isn't your problem."
+    },
+    {
+      "title": "Inspections",
+      "blurb": "Pre-sale and safety inspections with a straight answer about what you actually need."
+    }
+  ],
+  "stripe_url": "#"
+}

@@ -1,0 +1,203 @@
+---
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const defaultData = path.join(path.dirname(fileURLToPath(import.meta.url)), '../data/business.json');
+const b = JSON.parse(fs.readFileSync(process.env.BUSINESS_DATA || defaultData, 'utf8'));
+
+const hasRating = b.rating != null && b.review_count != null && b.review_count > 0;
+const showFiveStar = b.five_star_count != null && b.five_star_count >= 5;
+const areaTowns = (b.areas && b.areas.length ? b.areas : [b.city]);
+const reviewTowns = areaTowns.slice(0, 3).join(', ').replace(/, ([^,]+)$/, ', and $1');
+
+const title = `${cap(b.trade_noun)} in ${b.city}, ${b.state} | ${b.name}`;
+const description = `${b.name} — licensed ${b.trade_noun} serving ${b.city} and ${b.region}. ${b.services.slice(0, 4).map(s => s.title).join(', ')}.${hasRating ? ` Rated ${b.rating} from ${b.review_count} Google reviews.` : ''} Call ${b.phone_display}.`;
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': b.schema_type || 'LocalBusiness',
+  name: b.name,
+  telephone: b.phone_e164,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: b.street,
+    addressLocality: b.city,
+    addressRegion: b.state,
+    postalCode: b.zip,
+    addressCountry: 'US',
+  },
+  ...(b.lat != null && b.lng != null
+    ? { geo: { '@type': 'GeoCoordinates', latitude: b.lat, longitude: b.lng } }
+    : {}),
+  ...(hasRating
+    ? { aggregateRating: { '@type': 'AggregateRating', ratingValue: String(b.rating), reviewCount: String(b.review_count) } }
+    : {}),
+  ...(b.hours_spec && b.hours_spec.length
+    ? { openingHoursSpecification: b.hours_spec.map(h => ({ '@type': 'OpeningHoursSpecification', ...h })) }
+    : {}),
+  areaServed: areaTowns.map(t => `${t} ${b.state}`),
+};
+
+function cap(s) { return s ? s.charAt(0).toUpperCase() + s.slice(1) : s; }
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{title}</title>
+<meta name="description" content={description}>
+<meta name="robots" content="noindex">
+<script type="application/ld+json" set:html={JSON.stringify(schema)}></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,400..800&display=swap" rel="stylesheet">
+<style define:vars={{ accent: b.accent }}>
+  :root{
+    --ink:#1d2127;        /* near-black slate */
+    --paper:#fbfaf7;      /* warm off-white */
+    --volt:var(--accent); /* trade accent color */
+    --steel:#5c6470;      /* secondary text */
+    --line:#e3e0d8;       /* hairline */
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+  body{font-family:'Archivo',system-ui,sans-serif;background:var(--paper);color:var(--ink);line-height:1.55}
+  a{color:inherit}
+  .wrap{max-width:960px;margin:0 auto;padding:0 20px}
+
+  /* preview banner — remove on purchase */
+  .preview{background:var(--ink);color:var(--paper);font-size:.85rem;padding:10px 20px;text-align:center}
+  .preview a{color:var(--volt);font-weight:600;text-decoration:underline;text-underline-offset:3px}
+
+  header{border-bottom:3px solid var(--ink);background:var(--paper);position:sticky;top:0;z-index:10}
+  .bar{display:flex;align-items:center;justify-content:space-between;padding:14px 0;gap:12px}
+  .logo{font-weight:800;font-stretch:80%;font-size:1.15rem;letter-spacing:-.01em}
+  .logo span{background:var(--volt);padding:0 6px}
+  .call{background:var(--ink);color:var(--paper);font-weight:700;text-decoration:none;padding:10px 16px;font-size:.95rem;white-space:nowrap}
+  .call:hover,.call:focus-visible{background:#000}
+  :focus-visible{outline:3px solid var(--volt);outline-offset:2px}
+
+  .hero{padding:56px 0 44px;border-bottom:1px solid var(--line)}
+  .hero h1{font-weight:800;font-stretch:78%;font-size:clamp(2.3rem,7vw,4rem);line-height:1.02;letter-spacing:-.02em;max-width:14ch}
+  .tape{display:inline-block;background:var(--volt);padding:2px 10px}
+  .hero p{margin-top:18px;max-width:52ch;font-size:1.05rem;color:var(--steel)}
+  .hero .actions{margin-top:26px;display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+  .btn{display:inline-block;background:var(--ink);color:var(--paper);text-decoration:none;font-weight:700;padding:14px 22px;font-size:1rem}
+  .btn:hover,.btn:focus-visible{background:#000}
+  .rating{font-size:.95rem;color:var(--steel)}
+  .rating strong{color:var(--ink)}
+
+  section{padding:48px 0;border-bottom:1px solid var(--line)}
+  h2{font-weight:800;font-stretch:80%;font-size:1.6rem;letter-spacing:-.01em;margin-bottom:22px}
+
+  .services{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
+  .svc{background:var(--paper);padding:22px 20px}
+  .svc h3{font-size:1.05rem;font-weight:700;margin-bottom:6px}
+  .svc p{font-size:.92rem;color:var(--steel)}
+
+  .proof{display:flex;gap:36px;flex-wrap:wrap;align-items:baseline}
+  .proof .big{font-weight:800;font-stretch:78%;font-size:3.2rem;line-height:1}
+  .proof .big em{font-style:normal;background:var(--volt);padding:0 8px}
+  .proof p{max-width:44ch;color:var(--steel)}
+  .proof p strong{color:var(--ink)}
+
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:36px}
+  @media(max-width:640px){.grid2{grid-template-columns:1fr}}
+  .hours td{padding:5px 18px 5px 0;font-size:.95rem}
+  .hours td:last-child{color:var(--steel)}
+  .towns{list-style:none;columns:2;font-size:.95rem;color:var(--steel)}
+  .towns li{padding:3px 0}
+
+  footer{padding:36px 0 60px;font-size:.9rem;color:var(--steel)}
+  footer .name{color:var(--ink);font-weight:700}
+  footer a{color:var(--ink)}
+</style>
+</head>
+<body>
+
+<div class="preview">Website preview built for {b.name} — like it? It's yours for $500 flat. <a href={b.stripe_url || '#'}>Make it yours</a></div>
+
+<header>
+  <div class="wrap bar">
+    <div class="logo">{b.logo_main} <span>{b.logo_accent}</span></div>
+    <a class="call" href={`tel:${b.phone_e164}`}>Call {b.phone_display}</a>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+
+    <div class="hero">
+      <h1>{b.city}'s {b.trade_noun}, <span class="tape">done right</span> the first time.</h1>
+      <p>Licensed, insured {b.trade_work} for homes and businesses across {b.region}. Clear pricing before we start, clean work when we leave.</p>
+      <div class="actions">
+        <a class="btn" href={`tel:${b.phone_e164}`}>Call {b.phone_display}</a>
+        {hasRating && <div class="rating"><strong>{b.rating} out of 5</strong> from {b.review_count} Google reviews</div>}
+      </div>
+    </div>
+
+    <section id="services">
+      <h2>What we do</h2>
+      <div class="services">
+        {b.services.map(s => (
+          <div class="svc"><h3>{s.title}</h3><p>{s.blurb}</p></div>
+        ))}
+      </div>
+    </section>
+
+    {hasRating && (
+      <section id="reviews">
+        <h2>Neighbors trust us</h2>
+        <div class="proof">
+          {showFiveStar ? (
+            <div class="big"><em>{b.five_star_count}</em> five-star reviews</div>
+          ) : (
+            <div class="big"><em>{b.rating}★</em> on Google</div>
+          )}
+          <p>
+            {showFiveStar
+              ? `Out of ${b.review_count} reviews on Google, ${b.five_star_count} are five stars. `
+              : `Rated ${b.rating} out of 5 across ${b.review_count} Google reviews. `}
+            {b.google_url
+              ? <a href={b.google_url}><strong>Read them yourself</strong></a>
+              : <strong>Read them yourself</strong>} on our Google profile — real customers in {reviewTowns}.
+          </p>
+        </div>
+      </section>
+    )}
+
+    <section id="info">
+      <div class="grid2">
+        {b.hours && b.hours.length > 0 && (
+          <div>
+            <h2>Hours</h2>
+            <table class="hours">
+              {b.hours.map(h => (
+                <tr><td>{h.days}</td><td>{h.time}</td></tr>
+              ))}
+            </table>
+          </div>
+        )}
+        <div>
+          <h2>Where we work</h2>
+          <ul class="towns">
+            {areaTowns.map(t => <li>{t}</li>)}
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p><span class="name">{b.name}</span> · {b.street}, {b.city}, {b.state} {b.zip}</p>
+    <p><a href={`tel:${b.phone_e164}`}>{b.phone_display}</a> · Licensed &amp; insured · Serving {b.region}</p>
+  </div>
+</footer>
+
+</body>
+</html>
