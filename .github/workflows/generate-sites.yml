@@ -16,6 +16,12 @@ permissions:
 jobs:
   generate:
     runs-on: ubuntu-latest
+    # secrets are mapped to job env because the `secrets` context is not
+    # allowed inside step-level `if:` expressions
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      DEMO_DOMAIN: ${{ secrets.DEMO_DOMAIN }}
     steps:
       - uses: actions/checkout@v4
 
@@ -46,15 +52,11 @@ jobs:
       # ---- site is also attached as <slug>.DEMO_DOMAIN and that becomes the
       # ---- demo URL; until then demo URLs are sd-<slug>.pages.dev.
       - name: Deploy to Cloudflare Pages
-        if: steps.pending.outputs.count != '0' && secrets.CLOUDFLARE_API_TOKEN != ''
-        env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          DEMO_DOMAIN: ${{ secrets.DEMO_DOMAIN }}
+        if: steps.pending.outputs.count != '0' && env.CLOUDFLARE_API_TOKEN != ''
         run: node scripts/deploy-pending.mjs
 
       - name: Write demo URLs back to leads.json
-        if: steps.pending.outputs.count != '0' && secrets.CLOUDFLARE_API_TOKEN != ''
+        if: steps.pending.outputs.count != '0' && env.CLOUDFLARE_API_TOKEN != ''
         run: |
           if git diff --quiet leads/leads.json; then
             echo "no demo URLs to record"; exit 0
