@@ -44,7 +44,10 @@ jobs:
 
       - name: Build pending sites
         if: steps.pending.outputs.count != '0'
-        run: node scripts/generate-site.mjs --all
+        run: |
+          echo "== build ==" >> /tmp/ci.log
+          node scripts/generate-site.mjs --all 2>&1 | tee -a /tmp/ci.log
+          exit ${PIPESTATUS[0]}
 
       # ---- Deploy (skipped until CLOUDFLARE_API_TOKEN / CLOUDFLARE_ACCOUNT_ID
       # ---- secrets are added; token needs Cloudflare Pages:Edit).
@@ -53,7 +56,10 @@ jobs:
       # ---- demo URL; until then demo URLs are sd-<slug>.pages.dev.
       - name: Deploy to Cloudflare Pages
         if: steps.pending.outputs.count != '0' && env.CLOUDFLARE_API_TOKEN != ''
-        run: node scripts/deploy-pending.mjs
+        run: |
+          echo "== deploy ==" >> /tmp/ci.log
+          node scripts/deploy-pending.mjs 2>&1 | tee -a /tmp/ci.log
+          exit ${PIPESTATUS[0]}
 
       - name: Write demo URLs back to leads.json
         if: steps.pending.outputs.count != '0' && env.CLOUDFLARE_API_TOKEN != ''
@@ -65,4 +71,19 @@ jobs:
           git config user.email "bot@usawebsitedude.com"
           git add leads/leads.json
           git commit -m "record demo URLs [bot]"
+          git push
+
+      # on failure, commit the captured log so it can be read without
+      # GitHub UI access (removed once the pipeline is stable)
+      - name: Report failure log back to repo
+        if: failure()
+        run: |
+          mkdir -p .ci
+          { echo "run $GITHUB_RUN_ID failed at $(date -u '+%F %T') UTC"
+            tail -150 /tmp/ci.log 2>/dev/null || echo "(no step log captured — failure was before build/deploy)"
+          } > .ci/last-failure.log
+          git config user.name "site-dude-bot"
+          git config user.email "bot@usawebsitedude.com"
+          git add .ci/last-failure.log
+          git commit -m "ci failure log [bot] [skip ci]"
           git push
