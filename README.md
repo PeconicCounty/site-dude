@@ -1,6 +1,6 @@
 # Site Dude
 
-Automated premade-website pipeline: Outscraper pull → `leads/leads.json` → one demo site per lead → Cloudflare Pages at `businessname.sitedude.com`.
+Automated premade-website pipeline: Outscraper pull → `leads/leads.json` → one demo site per lead → Cloudflare Pages at `businessname.usawebsitedude.com`.
 
 ## Layout
 

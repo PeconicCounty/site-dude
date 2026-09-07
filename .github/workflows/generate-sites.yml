@@ -60,7 +60,7 @@ jobs:
             echo "no demo URLs to record"; exit 0
           fi
           git config user.name "site-dude-bot"
-          git config user.email "bot@sitedude.com"
+          git config user.email "bot@usawebsitedude.com"
           git add leads/leads.json
           git commit -m "record demo URLs [bot]"
           git push

@@ -3,7 +3,7 @@
 // the live demo URL back into leads/leads.json.
 //
 // Env: CLOUDFLARE_API_TOKEN (Pages:Edit), CLOUDFLARE_ACCOUNT_ID, and
-// optionally DEMO_DOMAIN (e.g. "sitedude.com"). Without DEMO_DOMAIN the demo
+// optionally DEMO_DOMAIN (e.g. "usawebsitedude.com"). Without DEMO_DOMAIN the demo
 // URL is the project's pages.dev address; with it, <slug>.DEMO_DOMAIN is
 // attached to the project and used instead (the zone must be in the same
 // Cloudflare account — Pages then manages the DNS record itself).
