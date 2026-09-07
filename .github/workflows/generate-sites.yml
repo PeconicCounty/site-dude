@@ -8,7 +8,7 @@ on:
 
 concurrency:
   group: generate-sites
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 permissions:
   contents: write
@@ -16,6 +16,7 @@ permissions:
 jobs:
   generate:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     # secrets are mapped to job env because the `secrets` context is not
     # allowed inside step-level `if:` expressions
     env:
