@@ -24,16 +24,16 @@ jobs:
       CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
       DEMO_DOMAIN: ${{ secrets.DEMO_DOMAIN }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
           node-version: 22
-          cache: npm
-          cache-dependency-path: template/package-lock.json
 
+      # npm install (not ci): the lockfile was generated on macOS and omits
+      # the Linux-native optional deps (rollup/esbuild binaries) Astro needs
       - name: Install template deps
-        run: npm ci
+        run: npm install --no-audit --no-fund 2>&1 | tee -a /tmp/ci.log
         working-directory: template
 
       - name: Find pending leads
@@ -79,6 +79,7 @@ jobs:
       - name: Report failure log back to repo
         if: failure()
         run: |
+          set -x
           mkdir -p .ci
           { echo "run $GITHUB_RUN_ID failed at $(date -u '+%F %T') UTC"
             tail -150 /tmp/ci.log 2>/dev/null || echo "(no step log captured — failure was before build/deploy)"
@@ -87,4 +88,5 @@ jobs:
           git config user.email "bot@usawebsitedude.com"
           git add .ci/last-failure.log
           git commit -m "ci failure log [bot] [skip ci]"
+          git pull --rebase origin main || true
           git push
